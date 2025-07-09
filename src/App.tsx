@@ -37,6 +37,7 @@ function App() {
     state: "",
   }));
 
+  console.log("お試し")
 
   // 状態定義
   const [squares, setSquares] = useState<Square[]>(initialSquares);
