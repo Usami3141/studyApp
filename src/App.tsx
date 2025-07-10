@@ -3,6 +3,8 @@ import style from "./App.module.css";
 
 //コンフリクト用dev
 
+//コンフリクトテスト・・・
+
 //勝ちパターンの洗い出し
 const lines: number[][] = [
   [0, 1, 2],
