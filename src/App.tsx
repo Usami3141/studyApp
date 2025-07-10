@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import style from "./App.module.css";
 
-console.log("コンフリクト")
-
 //勝ちパターンの洗い出し
 const lines: number[][] = [
   [0, 1, 2],
@@ -214,28 +212,23 @@ function App() {
             <p>勝者は {victory}</p>
           )}
         </div>
-        <div>
-          {/* 各行の要素をsquaresから取り出しつつ、ボタンを生成 */}
-          {[0, 1, 2].map((row) => (
-            <p key={row}>
-              {squares.slice(row * 3, row * 3 + 3).map((square) => (
-                <button
-                  className={style.button}
-                  key={square.id}
-                  onClick={() => putPiece(square.id, true)}
-                >
-                  {square.state}
-                </button>
-              ))}
-            </p>
+        <div className={style.board}>
+          {squares.map((square) => (
+            <button
+              className={style.piece}
+              key={square.id}
+              onClick={() => putPiece(square.id, true)}
+            >
+              {square.state}
+            </button>
           ))}
-          {/* CPUモードのON/OFFボタン */}
-          <button onClick={handleCPU}>CPUモード</button>
-          {/* リセットボタンの実装 */}
-          <button onClick={handleReset}>リセット</button>
-          {/* リセットボタンを押してから、対局が始まるまで表示される */}
-          {reset && <p>リセットされました！</p>}
         </div>
+        {/* CPUモードのON/OFFボタン */}
+        <button onClick={handleCPU}>CPUモード</button>
+        {/* リセットボタンの実装 */}
+        <button onClick={handleReset}>リセット</button>
+        {/* リセットボタンを押してから、対局が始まるまで表示される */}
+        {reset && <p>リセットされました！</p>}
       </div>
     </div>
   );
