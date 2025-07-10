@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import style from "./App.module.css";
 
-//コンフリクト用dev
+console.log("コンフリクト")
 
 //勝ちパターンの洗い出し
 const lines: number[][] = [
