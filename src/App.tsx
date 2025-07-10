@@ -220,6 +220,7 @@ function App() {
             <p key={row}>
               {squares.slice(row * 3, row * 3 + 3).map((square) => (
                 <button
+                  className={style.button}
                   key={square.id}
                   onClick={() => putPiece(square.id, true)}
                 >

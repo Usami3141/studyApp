@@ -83,6 +83,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* ボタンのスタイル */
+.piece{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+}
+
 /* この中のスタイルは「ライトテーマが選ばれている時」だけ適用される */
 @media (prefers-color-scheme: light) {
   :root {
