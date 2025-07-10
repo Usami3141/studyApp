@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.css'
 
+//コンフリクトテスト・・・
+
 //勝ちパターンの洗い出し
 const lines: number[][] = [
   [0, 1, 2],
