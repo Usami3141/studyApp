@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import style from "./App.module.css";
 
-//コンフリクトが起きるとどうなる？
+//コンフリクト用
 
 
 //勝ちパターンの洗い出し
