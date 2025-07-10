@@ -1,40 +1,65 @@
+/* グローバルスコープのCSS変数や初期設定を記述する特殊セレクタ */
 :root {
+  /* 全体のフォント統一 */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 行間の設定 */
   line-height: 1.5;
+  /* フォントの太さ */
   font-weight: 400;
 
+  /* ダークモード時の色設定
+  　ダークモード設定を用意していないので、現状意味のない設定 */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /* 自動でフォントを合成することを防ぐ */
   font-synthesis: none;
+  /* テキストの描写設定：描画速度、読みやすさ、位置の精度の内、どれを最適化するかを設定する
+  (現在は速さや読みやすさよりも、位置の正確さを強調する設定) */
   text-rendering: optimizeLegibility;
+  /* ブラウザごとのアンチエイリアス設定
+  文字の輪郭をなめらかにして目の疲れを軽減する */
+  /* 非標準であるため、ブラウザーによっては無視されることがあるらしい */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* リンクを用意した時のテキスト設定 */
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
+/* リンクにカーソルを合わせた時の色推移 */
 a:hover {
   color: #535bf2;
 }
 
+/* メインコンテンツの設定 */
 body {
+  /* コンテンツ外枠の余白 */
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* 子要素をフレックスボックスで整列させる */
+  display: flex; 
+  /* 横方向に中央揃え */
+  justify-content: center;
+  /* 縦方向に中央揃え */
+  align-items: center;
+  /* 幅の設定 */
   min-width: 320px;
+  /* 高さを100%に設定 */
   min-height: 100vh;
 }
 
+/* 見出しのフォント設定 */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* 「名前をセット」ボタンのデザイン */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -46,19 +71,25 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+/* ボタンにカーソルを合わせた時の色推移 */
 button:hover {
   border-color: #646cff;
 }
+
+/* ボタンをクリックや、タブキーなどでフォーカスされた時の設定 */
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* この中のスタイルは「ライトテーマが選ばれている時」だけ適用される */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+  /* リンクを使用していないのでここは無視される */
   a:hover {
     color: #747bff;
   }
