@@ -3,6 +3,7 @@ import style from "./App.module.css";
 
 //コンフリクトが起きるとどうなる？
 
+
 //勝ちパターンの洗い出し
 const lines: number[][] = [
   [0, 1, 2],
