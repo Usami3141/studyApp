@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import style from "./App.module.css";
 import { Routes, Route, Link } from "react-router-dom";
-import App from "./App";
 
 const Todo = () => {
   //Todoアイテムの型定義
@@ -186,6 +185,8 @@ const Todo = () => {
             }
           </ul>
         </div>
+        <br />
+        <Link to="/">ホームに戻る</Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import style from "./App.module.css";
 
 //勝ちパターンの洗い出し
@@ -173,62 +174,67 @@ const Game = () => {
   };
 
   return (
-    <div className={style.body}>
-      <h2 className={style.h2}>三目並べゲーム</h2>
-      <p>
-        <input value={name1} onChange={(e) => setName1(e.target.value)} />： ○,
-        {vsCPU ? (
-          "CPU"
-        ) : (
-          <input value={name2} onChange={(e) => setName2(e.target.value)} />
-        )}
-        ： ×
-        <button className={style.button} onClick={() => handleName()}>
-          名前セット
-        </button>
-      </p>
-      <div className={style.error}>
-        {errorName.map((group, i) => (
-          <div key={i}>
-            {group.map((msg, j) => (
-              <span key={j} className={style.errortext}>
-                {msg}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-      {victory === "" ? (
+    <div className={style.wrapper}>
+      <div className={style.body}>
+        <h2 className={style.h2}>三目並べゲーム</h2>
         <p>
-          現在のプレイヤー：{" "}
-          {vsCPU ? (player === player2 ? "CPU" : player) : player}
-        </p>
-      ) : victory === "引き分け" ? (
-        <p>{victory}</p>
-      ) : (
-        <p>勝者は {victory}</p>
-      )}
-      <div className={style.board}>
-        {squares.map((square) => (
-          <button
-            className={style.piece}
-            key={square.id}
-            onClick={() => putPiece(square.id, true)}
-          >
-            {square.state}
+          <input value={name1} onChange={(e) => setName1(e.target.value)} />：
+          ○,
+          {vsCPU ? (
+            "CPU"
+          ) : (
+            <input value={name2} onChange={(e) => setName2(e.target.value)} />
+          )}
+          ： ×
+          <button className={style.button} onClick={() => handleName()}>
+            名前セット
           </button>
-        ))}
+        </p>
+        <div className={style.error}>
+          {errorName.map((group, i) => (
+            <div key={i}>
+              {group.map((msg, j) => (
+                <span key={j} className={style.errortext}>
+                  {msg}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+        {victory === "" ? (
+          <p>
+            現在のプレイヤー：{" "}
+            {vsCPU ? (player === player2 ? "CPU" : player) : player}
+          </p>
+        ) : victory === "引き分け" ? (
+          <p>{victory}</p>
+        ) : (
+          <p>勝者は {victory}</p>
+        )}
+        <div className={style.board}>
+          {squares.map((square) => (
+            <button
+              className={style.piece}
+              key={square.id}
+              onClick={() => putPiece(square.id, true)}
+            >
+              {square.state}
+            </button>
+          ))}
+        </div>
+        {/* CPUモードのON/OFFボタン */}
+        <button className={style.button} onClick={handleCPU}>
+          CPUモード
+        </button>
+        {/* リセットボタンの実装 */}
+        <button className={style.button} onClick={handleReset}>
+          リセット
+        </button>
+        {/* リセットボタンを押してから、対局が始まるまで表示される */}
+        {reset && <p>リセットされました！</p>}
+        <br />
+        <Link to="/">ホームに戻る</Link>
       </div>
-      {/* CPUモードのON/OFFボタン */}
-      <button className={style.button} onClick={handleCPU}>
-        CPUモード
-      </button>
-      {/* リセットボタンの実装 */}
-      <button className={style.button} onClick={handleReset}>
-        リセット
-      </button>
-      {/* リセットボタンを押してから、対局が始まるまで表示される */}
-      {reset && <p>リセットされました！</p>}
     </div>
   );
 };
