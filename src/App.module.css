@@ -1,7 +1,6 @@
 /* App.module.css */
 .wrapper {
   height: 100vh; /* 画面高さ */
-  display: flex;
   justify-content: center; /* 横中央 */
   align-items: center;     /* 縦中央 */
   background-color: #f8f8f8;
