@@ -175,7 +175,6 @@ function App() {
   return (
     <div className={style.wrapper}>
       <div className={style.body}>
-        <div className={style.App}>
           <h2 className={style.h2}>三目並べゲーム</h2>
           <p>
             <input value={name1} onChange={(e) => setName1(e.target.value)} />：
@@ -211,22 +210,21 @@ function App() {
           ) : (
             <p>勝者は {victory}</p>
           )}
-        </div>
-        <div className={style.board}>
-          {squares.map((square) => (
-            <button
-              className={style.piece}
-              key={square.id}
-              onClick={() => putPiece(square.id, true)}
-            >
-              {square.state}
-            </button>
-          ))}
-        </div>
+            <div className={style.board}>
+              {squares.map((square) => (
+                <button
+                  className={style.piece}
+                  key={square.id}
+                  onClick={() => putPiece(square.id, true)}
+                >
+                  {square.state}
+                </button>
+              ))}
+            </div>
         {/* CPUモードのON/OFFボタン */}
-        <button onClick={handleCPU}>CPUモード</button>
+        <button className = {style.button} onClick={handleCPU}>CPUモード</button>
         {/* リセットボタンの実装 */}
-        <button onClick={handleReset}>リセット</button>
+        <button className = {style.button} onClick={handleReset}>リセット</button>
         {/* リセットボタンを押してから、対局が始まるまで表示される */}
         {reset && <p>リセットされました！</p>}
       </div>

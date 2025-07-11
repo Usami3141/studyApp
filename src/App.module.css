@@ -7,10 +7,11 @@
   background-color: #f8f8f8;
 }
 
+
 /* メインコンテンツのスタイル */
 .body {
-  width: 640px;
-  height: 400px;
+  width: 660px;
+  height: 560px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
