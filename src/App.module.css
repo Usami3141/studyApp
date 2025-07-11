@@ -1,15 +1,16 @@
 /* App.module.css */
 .wrapper {
   height: 100vh; /* 画面高さ */
-  display: flex;
   justify-content: center; /* 横中央 */
   align-items: center;     /* 縦中央 */
   background-color: #f8f8f8;
 }
 
+
+/* メインコンテンツのスタイル */
 .body {
-  width: 640px;
-  height: 400px;
+  width: 660px;
+  height: 560px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -17,23 +18,27 @@
   text-align: center;
 }
 
+/* 見出しh2のスタイル */
 .h2 {
   font-size: 2rem;
   color: #333;
 }
 
+/* エラー文表示用divのスタイル */
 .error {
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
 }
 
+/* エラー文のスタイル */
 .errortext {
   color: red;
   font-size: 0.8rem;
   margin-right: 1rem;
 }
 
+/* 「名前セット」ボタンのスタイル */
 .button {
   background-color: #4CAF50;
   border: none;
@@ -44,6 +49,39 @@
   cursor: pointer;
 }
 
+/* ボタンにカーソルを合わせた時の色推移 */
 .button:hover {
   background-color: #45a049;
+}
+
+/* マスを表示するためのボードのスタイル*/
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(3, 50px);
+  gap: 8px;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+/* マスのスタイル */
+.piece {
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+  /* 格子状の二次元レイアウト */
+  display: grid;
+  /* 格子の中身の中央揃え */
+  place-items: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #aaa;
+  background: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.piece:hover{
+  background-color: #dddddd;
 }
