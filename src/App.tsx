@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import style from "./App.module.css";
-import Game from "./Game";
-import Todo from "./todo";
-import NoMatch from "./NoMatch";
+import Game from "./pages/Game";
+import Todo from "./pages/Todo";
+import NoMatch from "./pages/NoMatch";
 
 function App() {
 
