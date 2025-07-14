@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import style from "./App.module.css";
+import style from "../App.module.css";
 import { Routes, Route, Link } from "react-router-dom";
 
 const Todo = () => {
