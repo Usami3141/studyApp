@@ -12,7 +12,7 @@ const Gamestatus: React.FC<Props> = ({ player, player2, victory, vsCPU }) => {
     <>
       {victory === "" ? (
         <p>
-          現在のプレイヤー：{" "}
+          {"現在のプレイヤー： "}
           {vsCPU ? (player === player2 ? "CPU" : player) : player}
         </p>
       ) : victory === "引き分け" ? (

@@ -3,4 +3,9 @@ type Square = {
   state: "○" | "×" | "";
 };
 
+type Player = {
+  name: string;
+}
+
 export type { Square };
+export type { Player };

@@ -21,8 +21,8 @@ const Todo = () => {
           ...todo,
           createdAt: new Date(todo.createdAt),
         }));
-      } catch {
-        return [];
+      } catch (e) {
+        console.error("Failed to load todos from localStorage:", e);
       }
     }
     return [];
