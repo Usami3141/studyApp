@@ -1,0 +1,28 @@
+import style from "../App.module.css";
+
+type Props = {
+    inputTodo: string;
+    setInputTodo: (value: string) => void;
+    handleTodoAdd: () => void;
+};
+
+const TodoForm: React.FC<Props> = ({
+  inputTodo,
+  setInputTodo,
+  handleTodoAdd,
+}) => {
+  return (
+    <div className={style.inputGroup}>
+      {/* アイテム追加input */}
+      {/* 入力内容が知りたいのでonChangeでイベントオブジェクトを引数としている */}
+      <input
+        type="text"
+        value={inputTodo}
+        onChange={(e) => setInputTodo(e.target.value)}
+      />
+      <button onClick={handleTodoAdd}>登録</button>
+    </div>
+  );
+};
+
+export default TodoForm;

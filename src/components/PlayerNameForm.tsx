@@ -1,30 +1,31 @@
 import style from "../App.module.css";
+import type { Player } from "../types/GameTypes";
 
 type Props = {
-    name1: string;
-    name2: string;
-    setName1: (name: string) => void;
-    setName2: (name: string) => void;
+    firstPlayer: Player;
+    secondPlayer: Player;
+    setFirstPlayer: (player: Player) => void;
+    setSecondPlayer: (player: Player) => void;
     vsCPU: boolean;
     handleName: () => void;
 }
 
 const PlayerNameForm: React.FC<Props> = ({
-    name1,
-    name2,
-    setName1,
-    setName2,
+    firstPlayer,
+    secondPlayer,
+    setFirstPlayer,
+    setSecondPlayer,
     vsCPU,
     handleName
 }: Props) => {
   return (
     <p>
-      <input placeholder = "プレイヤー1" value={name1} onChange={(e) => setName1(e.target.value)} />：
+      <input placeholder = "プレイヤー1" value={firstPlayer.preName} onChange={(e) => setFirstPlayer({...firstPlayer, preName:e.target.value})} />：
       ○,
           {vsCPU ? (
             "CPU"
           ) : (
-            <input placeholder = "プレイヤー2" value={name2} onChange={(e) => setName2(e.target.value)} />
+            <input placeholder = "プレイヤー2" value={secondPlayer.preName} onChange={(e) => setSecondPlayer({...secondPlayer, preName:e.target.value})} />
           )}
           ： ×
           <button className={style.button} onClick={() => handleName()}>

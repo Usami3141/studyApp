@@ -6,19 +6,18 @@ import ErrorMessages from "../components/ErrorMessages";
 import GameStatus from "../components/GameStatus";
 import GameBoard from "../components/GameBoard";
 
-const Game = () => {
+const GamePage = () => {
   const {
-    name1,
-    name2,
-    player2,
-    player,
-    squares,
+    firstPlayer,
+    secondPlayer,
+    currentTurn,
+    boardSquares,
     victory,
     reset,
     vsCPU,
-    errorName,
-    setName1,
-    setName2,
+    nameError,
+    setFirstPlayer,
+    setSecondPlayer,
     putPiece,
     handleName,
     handleReset,
@@ -30,24 +29,24 @@ const Game = () => {
       <div className = {style.body}>
         <h2 className = {style.h2}>三目並べゲーム</h2>
         <PlayerNameForm 
-          name1 = {name1}
-          name2 = {name2}
-          setName1 = {setName1}
-          setName2 = {setName2}
-          vsCPU = {vsCPU}
-          handleName = {handleName}
+          firstPlayer={firstPlayer}
+          secondPlayer={secondPlayer}
+          setFirstPlayer={setFirstPlayer}
+          setSecondPlayer={setSecondPlayer}
+          vsCPU={vsCPU}
+          handleName={handleName}
         />
         <ErrorMessages 
-          errorName = {errorName}
+          nameError={nameError}
         />
         <GameStatus
-          player={player}
-          player2={player2}
+          currentTurn={currentTurn}
+          secondPlayer={secondPlayer}
           victory={victory}
           vsCPU={vsCPU}
         />
         <GameBoard
-          squares={squares}
+          boardSquares={boardSquares}
           putPiece={putPiece}
         />
         {/* CPUモードのON/OFFボタン */}
@@ -67,4 +66,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default GamePage;

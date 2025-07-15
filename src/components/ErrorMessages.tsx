@@ -1,13 +1,13 @@
 import style from "../App.module.css";
 
 type Props = {
-    errorName: string[][];
+    nameError: string[][];
 };
 
-const ErrorMessages: React.FC<Props> = ({ errorName}: Props) => {
+const ErrorMessages: React.FC<Props> = ({ nameError }: Props) => {
     return (
         <div className={style.error}>
-          {errorName.map((group, i) => (
+          {nameError.map((group, i) => (
             <div key={i}>
               {group.map((msg, j) => (
                 <span key={j} className={style.errortext}>
