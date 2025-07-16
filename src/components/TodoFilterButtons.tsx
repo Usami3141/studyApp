@@ -1,12 +1,10 @@
 import Button from "./common/Button";
 
-type Props = {
-    setTodoFilter:(filterTodo : "all" | "undone" | "done") => void
+type TodoFilterButtonsProps = {
+  setTodoFilter: (filterTodo: "all" | "undone" | "done") => void;
 };
 
-const TodoFilterButtons: React.FC<Props> = ({
-    setTodoFilter,
-}) => {
+const TodoFilterButtons = ({ setTodoFilter }: TodoFilterButtonsProps) => {
   return (
     <p>
       {/* フィルター機能 */}

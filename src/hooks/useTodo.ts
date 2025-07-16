@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import type { Todo } from "../types/TodoTypes";
-import loadTodos from "../utils/LoadTodos";
+import loadTodos from "../utils/loadTodos";
 
 
 const useTodo = () => {
@@ -48,7 +48,7 @@ const useTodo = () => {
   };
 
   //Todoアイテムの編集モード切替
-  const editingTodo = (id: number) => {
+  const handleEditingTodo = (id: number) => {
     const target: Todo | undefined = todos.find((todo) => todo.id === id);
     if (target) {
       setEditingId(id);
@@ -57,7 +57,7 @@ const useTodo = () => {
   };
 
   //Todoアイテムの編集保存
-  const confirmEdit = (id: number) => {
+  const handleConfirmEdit = (id: number) => {
     if (inputValidation(editingText)) {
       const updatedTodos = todos.map((t) =>
         t.id === id ? { ...t, text: editingText } : t
@@ -79,7 +79,7 @@ const useTodo = () => {
     }
   };
 
-  //Todoアイテムリストのフィルター機能
+  //フィルターされたTodoアイテムリスト
   const filteredTodos = todos.filter((todo) => {
     switch(todoFilter) {
       case "all":
@@ -103,8 +103,8 @@ const useTodo = () => {
     handleTodoAdd,
     handleTodoDelete,
     handleTodoDone,
-    editingTodo,
-    confirmEdit,
+    handleEditingTodo,
+    handleConfirmEdit,
   };
 };
 

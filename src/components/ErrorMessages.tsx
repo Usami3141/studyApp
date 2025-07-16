@@ -1,23 +1,25 @@
 import style from "../App.module.css";
 
-type Props = {
-    nameError: string[][];
+type ErrorMessageProps = {
+  nameError: string[][];
 };
 
-const ErrorMessages: React.FC<Props> = ({ nameError }: Props) => {
-    return (
-        <div className={style.error}>
-          {nameError.map((group, i) => (
-            <div key={i}>
-              {group.map((msg, j) => (
-                <span key={j} className={style.errortext}>
-                  {msg}
-                </span>
-              ))}
-            </div>
+const ErrorMessages = ({ nameError }: ErrorMessageProps) => {
+  return (
+    <div style = {{display: "flex", justifyContent: "center"}}>
+    <div className={style.error}>
+      {nameError.map((group, i) => (
+        <div className={style.errortext} key={i}>
+          {group.map((msg, j) => (
+            <span key={j} className={style.errortext}>
+              {msg}
+            </span>
           ))}
         </div>
-    )
-}
+      ))}
+    </div>
+    </div>
+  );
+};
 
 export default ErrorMessages;

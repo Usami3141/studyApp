@@ -2,21 +2,30 @@ import style from "../App.module.css";
 import type { Player } from "../types/GameTypes";
 import type { CurrentTurn } from "../types/GameTypes";
 
-type Props = {
+type GameStatusProps = {
   secondPlayer: Player;
   currentTurn: CurrentTurn;
   victory: string;
   vsCPU: boolean;
 };
 
-const GameStatus: React.FC<Props> = ({ currentTurn, secondPlayer, victory, vsCPU }) => {
+const GameStatus = ({
+  currentTurn,
+  secondPlayer,
+  victory,
+  vsCPU,
+}: GameStatusProps) => {
   return (
     <>
       {victory === "" ? (
-        <p className={style.h2}>
+        <h3 className={style.h3}>
           {"現在のプレイヤー： "}
-          {vsCPU ? (currentTurn === secondPlayer.name ? "CPU" : currentTurn) : currentTurn}
-        </p>
+          {vsCPU
+            ? currentTurn === secondPlayer.name
+              ? "CPU"
+              : currentTurn
+            : currentTurn}
+        </h3>
       ) : victory === "引き分け" ? (
         <p className={style.h2}>{victory}</p>
       ) : (

@@ -9,13 +9,13 @@ type CheckboxProps = {
   className?: string;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({
+const Checkbox = ({
   checked = false,
   onChange,
   disabled = false,
   children,
-  className = style.checkbox,
-}) => {
+  className = style.customCheckbox,
+}: CheckboxProps) => {
   return (
     <label className={className}>
       <input
