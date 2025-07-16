@@ -1,4 +1,4 @@
-import type { Square } from "../types/types";
+import type { Square } from "../types/GameTypes";
 
 const canVictoryPlayer = (result: Square[]): boolean => {
   //勝ちパターンの洗い出し

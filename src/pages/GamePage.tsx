@@ -5,20 +5,20 @@ import PlayerNameForm from "../components/PlayerNameForm";
 import ErrorMessages from "../components/ErrorMessages";
 import GameStatus from "../components/GameStatus";
 import GameBoard from "../components/GameBoard";
+import Button from "../components/common/Button";
 
-const Game = () => {
+const GamePage = () => {
   const {
-    name1,
-    name2,
-    player2,
-    player,
-    squares,
+    firstPlayer,
+    secondPlayer,
+    currentTurn,
+    boardSquares,
     victory,
     reset,
     vsCPU,
-    errorName,
-    setName1,
-    setName2,
+    nameError,
+    setFirstPlayer,
+    setSecondPlayer,
     putPiece,
     handleName,
     handleReset,
@@ -30,34 +30,34 @@ const Game = () => {
       <div className = {style.body}>
         <h2 className = {style.h2}>三目並べゲーム</h2>
         <PlayerNameForm 
-          name1 = {name1}
-          name2 = {name2}
-          setName1 = {setName1}
-          setName2 = {setName2}
-          vsCPU = {vsCPU}
-          handleName = {handleName}
+          firstPlayer={firstPlayer}
+          secondPlayer={secondPlayer}
+          setFirstPlayer={setFirstPlayer}
+          setSecondPlayer={setSecondPlayer}
+          vsCPU={vsCPU}
+          handleName={handleName}
         />
         <ErrorMessages 
-          errorName = {errorName}
+          nameError={nameError}
         />
         <GameStatus
-          player={player}
-          player2={player2}
+          currentTurn={currentTurn}
+          secondPlayer={secondPlayer}
           victory={victory}
           vsCPU={vsCPU}
         />
         <GameBoard
-          squares={squares}
+          boardSquares={boardSquares}
           putPiece={putPiece}
         />
         {/* CPUモードのON/OFFボタン */}
-        <button className={style.button} onClick={handleCPU}>
+        <Button onClick={handleCPU}>
           CPUモード
-        </button>
+        </Button>
         {/* リセットボタンの実装 */}
-        <button className={style.button} onClick={handleReset}>
+        <Button onClick={handleReset}>
           リセット
-        </button>
+        </Button>
         {/* リセットボタンを押してから、対局が始まるまで表示される */}
         {reset && <p>リセットされました！</p>}
         <br />
@@ -67,4 +67,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default GamePage;

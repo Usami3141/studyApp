@@ -1,4 +1,4 @@
-import type { Square } from "../types/types";  
+import type { Square } from "../types/GameTypes";  
 
 const InitialSquares = () => {
   const initialSquares: Square[] = Array.from({ length: 9 }, (_, i) => ({

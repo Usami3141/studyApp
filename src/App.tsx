@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import style from "./App.module.css";
-import Game from "./pages/Game";
-import Todo from "./pages/Todo";
+import GamePage from "./pages/GamePage";
+import TodoPage from "./pages/TodoPage";
 import NoMatch from "./pages/NoMatch";
 
 function App() {
@@ -42,8 +42,8 @@ function App() {
             <h2>あなたはこの画面を{count}回訪れました</h2>
           </div>
       } />
-        <Route path="/game" element={<Game />} />
-        <Route path="/todo" element={<Todo />} />
+        <Route path="/game" element={<GamePage />} />
+        <Route path="/todo" element={<TodoPage />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

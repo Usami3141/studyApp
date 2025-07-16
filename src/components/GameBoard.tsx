@@ -1,22 +1,23 @@
-import type {Square} from "../types/types";
+import type {Square} from "../types/GameTypes";
 import style from "../App.module.css";
+import Button from "./common/Button";
 
 type Props = {
-    squares: Square[];
+    boardSquares: Square[];
     putPiece: (id: number, isPlayer: boolean) => void;
 }
 
-const GameBoard: React.FC<Props> = ({ squares, putPiece }) => {
+const GameBoard: React.FC<Props> = ({ boardSquares, putPiece }) => {
     return (
         <div className={style.board}>
-          {squares.map((square) => (
-            <button
+          {boardSquares.map((square) => (
+            <Button
               className={style.piece}
               key={square.id}
               onClick={() => putPiece(square.id, true)}
             >
               {square.state}
-            </button>
+            </Button>
           ))}
         </div>
     );
