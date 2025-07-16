@@ -1,5 +1,6 @@
-import style from "../App.module.css";
 import type { Player } from "../types/GameTypes";
+import Button from "./common/Button";
+import Input from "./common/Input";
 
 type Props = {
     firstPlayer: Player;
@@ -20,17 +21,17 @@ const PlayerNameForm: React.FC<Props> = ({
 }: Props) => {
   return (
     <p>
-      <input placeholder = "プレイヤー1" value={firstPlayer.preName} onChange={(e) => setFirstPlayer({...firstPlayer, preName:e.target.value})} />：
+      <Input placeholder = "プレイヤー1" value={firstPlayer.preName} onChange={(e) => setFirstPlayer({...firstPlayer, preName:e.target.value})} />：
       ○,
           {vsCPU ? (
             "CPU"
           ) : (
-            <input placeholder = "プレイヤー2" value={secondPlayer.preName} onChange={(e) => setSecondPlayer({...secondPlayer, preName:e.target.value})} />
+            <Input placeholder = "プレイヤー2" value={secondPlayer.preName} onChange={(e) => setSecondPlayer({...secondPlayer, preName:e.target.value})} />
           )}
           ： ×
-          <button className={style.button} onClick={() => handleName()}>
+          <Button onClick={() => handleName()}>
             名前セット
-          </button>
+          </Button>
         </p>
 )}
 

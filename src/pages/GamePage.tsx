@@ -5,6 +5,7 @@ import PlayerNameForm from "../components/PlayerNameForm";
 import ErrorMessages from "../components/ErrorMessages";
 import GameStatus from "../components/GameStatus";
 import GameBoard from "../components/GameBoard";
+import Button from "../components/common/Button";
 
 const GamePage = () => {
   const {
@@ -50,13 +51,13 @@ const GamePage = () => {
           putPiece={putPiece}
         />
         {/* CPUモードのON/OFFボタン */}
-        <button className={style.button} onClick={handleCPU}>
+        <Button onClick={handleCPU}>
           CPUモード
-        </button>
+        </Button>
         {/* リセットボタンの実装 */}
-        <button className={style.button} onClick={handleReset}>
+        <Button onClick={handleReset}>
           リセット
-        </button>
+        </Button>
         {/* リセットボタンを押してから、対局が始まるまで表示される */}
         {reset && <p>リセットされました！</p>}
         <br />

@@ -1,4 +1,7 @@
 import style from "../App.module.css";
+import Button from "../components/common/Button";
+import Input from "./common/Input";
+import Checkbox from "./common/Checkbox";
 import type { Todo } from "../types/TodoTypes";
 
 type Props = {
@@ -36,18 +39,17 @@ const TodoList: React.FC<Props> = (
                     <>
                       {/* 編集中 */}
                       {/* 入力内容が知りたいのでonChangeでイベントオブジェクトを引数としている */}
-                      <input
+                      <Input
                         type="text"
                         value={editingText}
                         onChange={(e) => setEditingText(e.target.value)}
                       />
-                      <button onClick={() => confirmEdit(todo.id)}>保存</button>
+                      <Button onClick={() => confirmEdit(todo.id)}>保存</Button>
                     </>
                   ) : (
                     <>
                       {/* こちらのonChangeではイベントオブジェクトを引数としていない。入力されたかどうかだけ分かればよいため*/}
-                      <input
-                        type="checkbox"
+                      <Checkbox
                         checked={todo.done}
                         onChange={() => handleTodoDone(todo.id)}
                       />
@@ -61,13 +63,13 @@ const TodoList: React.FC<Props> = (
                       >
                         {todo.createdAt.toLocaleString()} {todo.text}
                       </span>
-                      <button onClick={() => editingTodo(todo.id)}>編集</button>
+                      <Button onClick={() => editingTodo(todo.id)}>編集</Button>
                     </>
                   )}
                   {/* アイテムの削除ボタン */}
-                  <button onClick={() => handleTodoDelete(todo.id)}>
+                  <Button onClick={() => handleTodoDelete(todo.id)}>
                     削除
-                  </button>
+                  </Button>
                 </li>
               ))
             }
