@@ -1,11 +1,12 @@
+import * as yup from "yup";
 import { useState, useEffect, useCallback } from "react";
-import type { Square, Player, CurrentTurn } from "../types/GameTypes";
+import type { Square, Player, CurrentTurn, NameError } from "../types/GameTypes";
 import {
   initialFirstPlayer,
   initialSecondPlayer,
 } from "../constants/initialPlayers";
 import initialSquares from "../utils/initialSquares";
-import validatePlayerName from "../utils/validatePlayerName";
+import playerNameSchema from "../schemas/playerNameSchema";
 import canVictory from "../utils/canVictory";
 
 const useGame = () => {
@@ -17,7 +18,7 @@ const useGame = () => {
   const [victory, setVictory] = useState<string | "引き分け" | "">("");
   const [reset, setReset] = useState(false);
   const [vsCPU, setVsCPU] = useState(false);
-  const [nameError, setNameError] = useState<string[][]>([]);
+  const [nameError, setNameError] = useState<NameError>({ firstPlayerName: [], secondPlayerName: [] });
 
   //firstPlayerかsecondPlayerをランダムで返す
   const randomPlay = useCallback((): string => {
@@ -29,30 +30,26 @@ const useGame = () => {
   }, [randomPlay]);
 
   //プレイヤー名の入力チェック
-  const nameValidation = (): boolean => {
-    const firstPlayerNameError: string[] = validatePlayerName(
-      firstPlayer.preName
-    );
-    const secondPlayerNameError: string[] = validatePlayerName(
-      secondPlayer.preName
-    );
-
-    if (firstPlayerNameError.length > 0 || secondPlayerNameError.length > 0) {
-      setNameError([firstPlayerNameError, secondPlayerNameError]);
-      return false;
-    } else {
-      setNameError([]);
-      return true;
+  const nameValidation = async (preName: string): Promise<string[]> => {    
+    try{
+      await playerNameSchema.validate({preName}, {abortEarly: false});
+      return [];
+    }catch(error){
+      if(error instanceof yup.ValidationError){
+        return error.errors;        
+      }else{
+        return ["不明なエラーです。"];        
+      }
     }
+
   };
 
   //プレイヤー名設定
-  const handleName = () => {
+  const handleName = async () => {
     if (boardSquares.some((s) => s.state !== "")) return;
-    if (nameValidation()) {
-      setFirstPlayer({ ...firstPlayer, name: firstPlayer.preName });
-      setSecondPlayer({ ...secondPlayer, name: secondPlayer.preName });
-    }
+    const firstPlayerNameError: string[] = await nameValidation(firstPlayer.preName);
+    const secondPlayerNameError: string[] = await nameValidation(secondPlayer.preName);
+    setNameError({ firstPlayerName: firstPlayerNameError, secondPlayerName: secondPlayerNameError });
   };
 
   // 勝敗判定
@@ -164,7 +161,6 @@ const useGame = () => {
     handleName,
     handleReset,
     handleCPU,
-    nameValidation,
   };
 };
 

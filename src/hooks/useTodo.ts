@@ -1,7 +1,8 @@
+import * as yup from "yup";
 import {useState, useEffect} from "react";
 import type { Todo } from "../types/TodoTypes";
 import loadTodos from "../utils/loadTodos";
-
+import todoSchema from "../schemas/todoSchema";
 
 const useTodo = () => {
   //状態とset関数の宣言
@@ -10,7 +11,7 @@ const useTodo = () => {
   const [todoFilter, setTodoFilter] = useState<"all" | "done" | "undone">("all");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingText, setEditingText] = useState<string>("");
-  const [todoError, setTodoError] = useState<string>("");
+  const [todoError, setTodoError] = useState<string[]>([]);
 
     //レンダリング時にしてほしい処理
   useEffect(() => {
@@ -19,7 +20,7 @@ const useTodo = () => {
 
     //内部関数コンポーネント
   //Todoアイテム追加
-  const handleTodoAdd = () => {
+  const handleTodoAdd = async () => {
     const todo: Todo = {
       id: Date.now(),
       text: inputTodo,
@@ -27,7 +28,9 @@ const useTodo = () => {
       createdAt: new Date(),
     };
 
-    if (inputValidation(todo.text)) {
+    const isValid = await todoValidation(todo.text);
+
+    if (isValid) {
       setTodos([...todos, todo]);
       setInputTodo("");
     }
@@ -57,8 +60,9 @@ const useTodo = () => {
   };
 
   //Todoアイテムの編集保存
-  const handleConfirmEdit = (id: number) => {
-    if (inputValidation(editingText)) {
+  const handleConfirmEdit = async (id: number) => {
+    const isValid = await todoValidation(editingText);
+    if (isValid) {
       const updatedTodos = todos.map((t) =>
         t.id === id ? { ...t, text: editingText } : t
       );
@@ -69,13 +73,18 @@ const useTodo = () => {
   };
 
   //Todoアイテムの入力バリデーション
-  const inputValidation = (text: string) => {
-    if (text.trim() === "") {
-      setTodoError("有効な内容を入力してください");
-      return false;
-    } else {
-      setTodoError("");
+  const todoValidation = async(todoText: string): Promise<boolean> => {
+    try {
+      await todoSchema.validate({ todoText }, { abortEarly: false });
+      setTodoError([]);
       return true;
+    }catch(error){
+      if(error instanceof yup.ValidationError){
+        setTodoError(error.errors);
+      }else{
+        setTodoError(["不明なエラーです。"]);
+      }
+      return false;
     }
   };
 

@@ -11,6 +11,12 @@ type Player = {
 
 type CurrentTurn =  string | null;
 
+type NameError = {
+  firstPlayerName: string[];
+  secondPlayerName: string[];
+}
+
 export type { Square };
 export type { Player };
 export type { CurrentTurn };
+export type { NameError };

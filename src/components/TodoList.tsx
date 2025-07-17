@@ -26,48 +26,61 @@ const TodoList = ({
   handleConfirmEdit,
 }: TodoListProps) => {
   return (
-    <ul>
-      {/* アイテムリスト表示 */}
-      {
-        //配列としてリストを管理しているので繰り返し処理で表示
-        filteredTodos.map((todo) => (
+    <div className={style.todoListWrapper}>
+      <ul className={style.todoList}>
+        {filteredTodos.map((todo) => (
           <li key={todo.id} className={style.todoItem}>
-            {/* 編集中のアイテムは入力ボックスに表示切替 */}
             {editingId === todo.id ? (
               <>
-                {/* 編集中 */}
-                {/* 入力内容が知りたいのでonChangeでイベントオブジェクトを引数としている */}
-                <Input
-                  type="text"
-                  value={editingText}
-                  onChange={(e) => setEditingText(e.target.value)}
-                />
-                <Button onClick={() => handleConfirmEdit(todo.id)}>保存</Button>
+                <div className={style.contentArea}>
+                  <Checkbox checked={todo.done} onChange={() => {}} disabled />
+                  <Input
+                    type="text"
+                    value={editingText}
+                    onChange={(e) => setEditingText(e.target.value)}
+                  />
+                </div>
+                <div className={style.buttonArea}>
+                  <Button onClick={() => handleConfirmEdit(todo.id)}>
+                    保存
+                  </Button>
+                  <Button onClick={() => handleTodoDelete(todo.id)}>
+                    削除
+                  </Button>
+                </div>
               </>
             ) : (
               <>
-                {/* こちらのonChangeではイベントオブジェクトを引数としていない。入力されたかどうかだけ分かればよいため*/}
-                <Checkbox
-                  checked={todo.done}
-                  onChange={() => handleTodoDone(todo.id)}
-                />
-                <span
-                  style={{
-                    textDecoration: todo.done ? "line-through" : "none",
-                  }}
-                  className={`${style.todoText} ${todo.done ? style.done : ""}`}
+                <div
+                  className={style.contentArea}
+                  onClick={() => handleTodoDone(todo.id)}
                 >
-                  {todo.createdAt.toLocaleString()} {todo.text}
-                </span>
-                <Button onClick={() => handleEditingTodo(todo.id)}>編集</Button>
+                  <Checkbox checked={todo.done} onChange={() => {}} />
+                  <span
+                    className={`${style.todoText} ${
+                      todo.done ? style.done : ""
+                    }`}
+                    style={{
+                      textDecoration: todo.done ? "line-through" : "none",
+                    }}
+                  >
+                    {todo.createdAt.toLocaleString()} {todo.text}
+                  </span>
+                </div>
+                <div className={style.buttonArea}>
+                  <Button onClick={() => handleEditingTodo(todo.id)}>
+                    編集
+                  </Button>
+                  <Button onClick={() => handleTodoDelete(todo.id)}>
+                    削除
+                  </Button>
+                </div>
               </>
             )}
-            {/* アイテムの削除ボタン */}
-            <Button onClick={() => handleTodoDelete(todo.id)}>削除</Button>
           </li>
-        ))
-      }
-    </ul>
+        ))}
+      </ul>
+    </div>
   );
 };
 

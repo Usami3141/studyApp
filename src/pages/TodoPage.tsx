@@ -32,10 +32,18 @@ const TodoPage = () => {
           setInputTodo={setInputTodo}
           handleTodoAdd={handleTodoAdd}
         />
-        {todoError && <p className={style.errorText}>{todoError}</p>}
+        {todoError && (
+          <div className={style.error}>
+            {todoError.map((message, index) => (
+              <p className={style.errortext} key={index}>
+                {message}
+              </p>
+            ))}
+          </div>
+        )}
 
         <TodoFilterButtons setTodoFilter={setTodoFilter} />
-        <p className={style.todoCount}>{filteredTodos.length}件</p>
+        <p className={style.todoCount}>表示件数：{filteredTodos.length}件</p>
 
         <TodoList
           filteredTodos={filteredTodos}
