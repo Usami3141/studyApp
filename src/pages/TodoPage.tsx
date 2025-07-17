@@ -1,13 +1,12 @@
 import style from "../App.module.css";
-import { Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useTodo from "../hooks/useTodo";
 import TodoForm from "../components/TodoForm";
 import TodoFilterButtons from "../components/TodoFilterButtons";
 import TodoList from "../components/TodoList";
 
 const TodoPage = () => {
-
- const {
+  const {
     inputTodo,
     filteredTodos,
     editingId,
@@ -19,42 +18,46 @@ const TodoPage = () => {
     handleTodoAdd,
     handleTodoDelete,
     handleTodoDone,
-    editingTodo,
-    confirmEdit,
+    handleEditingTodo,
+    handleConfirmEdit,
   } = useTodo();
-
 
   //描画内容記述
   return (
-    <div className={style.wrapper}>
-      <Routes>{/* 他のルートがあればここに追加 */}</Routes>
-      <div className={style.body}>
-        <div className={style.container}>
-          <h2>Todoリスト</h2>
-          <TodoForm
-            inputTodo={inputTodo}
-            setInputTodo={setInputTodo}
-            handleTodoAdd={handleTodoAdd}
-          />
-          {todoError && <p className={style.errorText}>{todoError}</p>}
+    <div className={style.body}>
+      <div className={style.container}>
+        <h2>Todoリスト</h2>
+        <TodoForm
+          inputTodo={inputTodo}
+          setInputTodo={setInputTodo}
+          handleTodoAdd={handleTodoAdd}
+        />
+        {todoError && (
+          <div className={style.error}>
+            {todoError.map((message, index) => (
+              <p className={style.errortext} key={index}>
+                {message}
+              </p>
+            ))}
+          </div>
+        )}
 
-          <TodoFilterButtons setTodoFilter={setTodoFilter} />
-          <p className={style.todoCount}>{filteredTodos.length}件</p>
+        <TodoFilterButtons setTodoFilter={setTodoFilter} />
+        <p className={style.todoCount}>表示件数：{filteredTodos.length}件</p>
 
         <TodoList
-            filteredTodos={filteredTodos}
-            editingId={editingId}
-            editingText={editingText}
-            setEditingText={setEditingText}
-            handleTodoDone={handleTodoDone}
-            handleTodoDelete={handleTodoDelete}
-            editingTodo={editingTodo}
-            confirmEdit={confirmEdit}
-          />
-        </div>
-        <br />
-        <Link to="/">ホームに戻る</Link>
+          filteredTodos={filteredTodos}
+          editingId={editingId}
+          editingText={editingText}
+          setEditingText={setEditingText}
+          handleTodoDone={handleTodoDone}
+          handleTodoDelete={handleTodoDelete}
+          handleEditingTodo={handleEditingTodo}
+          handleConfirmEdit={handleConfirmEdit}
+        />
       </div>
+      <br />
+      <Link to="/">ホームに戻る</Link>
     </div>
   );
 };

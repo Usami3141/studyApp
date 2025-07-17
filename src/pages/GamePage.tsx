@@ -26,43 +26,32 @@ const GamePage = () => {
   } = useGame();
 
   return (
-    <div className = {style.wrapper}>
-      <div className = {style.body}>
-        <h2 className = {style.h2}>三目並べゲーム</h2>
-        <PlayerNameForm 
-          firstPlayer={firstPlayer}
-          secondPlayer={secondPlayer}
-          setFirstPlayer={setFirstPlayer}
-          setSecondPlayer={setSecondPlayer}
-          vsCPU={vsCPU}
-          handleName={handleName}
-        />
-        <ErrorMessages 
-          nameError={nameError}
-        />
-        <GameStatus
-          currentTurn={currentTurn}
-          secondPlayer={secondPlayer}
-          victory={victory}
-          vsCPU={vsCPU}
-        />
-        <GameBoard
-          boardSquares={boardSquares}
-          putPiece={putPiece}
-        />
-        {/* CPUモードのON/OFFボタン */}
-        <Button onClick={handleCPU}>
-          CPUモード
-        </Button>
-        {/* リセットボタンの実装 */}
-        <Button onClick={handleReset}>
-          リセット
-        </Button>
-        {/* リセットボタンを押してから、対局が始まるまで表示される */}
-        {reset && <p>リセットされました！</p>}
-        <br />
-        <Link to="/">ホームに戻る</Link>
-      </div>
+    <div className={style.body}>
+      <h2 className={style.h2}>三目並べゲーム</h2>
+      <PlayerNameForm
+        firstPlayer={firstPlayer}
+        secondPlayer={secondPlayer}
+        setFirstPlayer={setFirstPlayer}
+        setSecondPlayer={setSecondPlayer}
+        vsCPU={vsCPU}
+        handleName={handleName}
+      />
+      <ErrorMessages nameError={nameError} />
+      <GameStatus
+        currentTurn={currentTurn}
+        secondPlayer={secondPlayer}
+        victory={victory}
+        vsCPU={vsCPU}
+      />
+      <GameBoard boardSquares={boardSquares} putPiece={putPiece} />
+      {/* CPUモードのON/OFFボタン */}
+      <Button onClick={handleCPU}>CPUモード</Button>
+      {/* リセットボタンの実装 */}
+      <Button onClick={handleReset}>リセット</Button>
+      {/* リセットボタンを押してから、対局が始まるまで表示される */}
+      {reset && <p>リセットされました！</p>}
+      <br />
+      <Link to="/">ホームに戻る</Link>
     </div>
   );
 };

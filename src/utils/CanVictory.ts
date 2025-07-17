@@ -1,6 +1,6 @@
 import type { Square } from "../types/GameTypes";
 
-const canVictoryPlayer = (result: Square[]): boolean => {
+const canVictory = (result: Square[]): boolean => {
   //勝ちパターンの洗い出し
   const lines: number[][] = [
     [0, 1, 2],
@@ -19,4 +19,4 @@ const canVictoryPlayer = (result: Square[]): boolean => {
   );
 };
 
-export default canVictoryPlayer;
+export default canVictory;

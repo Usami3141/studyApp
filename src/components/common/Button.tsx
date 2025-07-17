@@ -8,12 +8,12 @@ type ButtonProps = {
   className?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   onClick,
   disabled = false,
   children,
   className = style.button,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       className={className}

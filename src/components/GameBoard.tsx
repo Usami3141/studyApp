@@ -2,12 +2,12 @@ import type {Square} from "../types/GameTypes";
 import style from "../App.module.css";
 import Button from "./common/Button";
 
-type Props = {
+type GameBoardProps = {
     boardSquares: Square[];
     putPiece: (id: number, isPlayer: boolean) => void;
 }
 
-const GameBoard: React.FC<Props> = ({ boardSquares, putPiece }) => {
+const GameBoard = ({ boardSquares, putPiece }: GameBoardProps) => {
     return (
         <div className={style.board}>
           {boardSquares.map((square) => (

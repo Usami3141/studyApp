@@ -2,17 +2,17 @@ import style from "../App.module.css";
 import Button from "./common/Button";
 import Input from "./common/Input";
 
-type Props = {
-    inputTodo: string;
-    setInputTodo: (value: string) => void;
-    handleTodoAdd: () => void;
+type TodoFormProps = {
+  inputTodo: string;
+  setInputTodo: (value: string) => void;
+  handleTodoAdd: () => void;
 };
 
-const TodoForm: React.FC<Props> = ({
+const TodoForm = ({
   inputTodo,
   setInputTodo,
   handleTodoAdd,
-}) => {
+}: TodoFormProps) => {
   return (
     <div className={style.inputGroup}>
       {/* アイテム追加input */}
