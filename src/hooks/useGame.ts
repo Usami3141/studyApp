@@ -5,7 +5,7 @@ import {
   initialSecondPlayer,
 } from "../constants/initialPlayers";
 import initialSquares from "../utils/initialSquares";
-import isValid from "../utils/isValid";
+import validatePlayerName from "../utils/validatePlayerName";
 import canVictory from "../utils/canVictory";
 
 const useGame = () => {
@@ -30,22 +30,13 @@ const useGame = () => {
 
   //プレイヤー名の入力チェック
   const nameValidation = (): boolean => {
-    const firstPlayerNameError: string[] = [];
-    const secondPlayerNameError: string[] = [];
-    if (
-      firstPlayer.preName.trim() === "" ||
-      firstPlayer.preName.trim().length > 10
-    )
-      firstPlayerNameError.push("プレイヤー名は1~10文字にしてください。");
-    if (!isValid(firstPlayer.preName))
-      firstPlayerNameError.push("特殊文字は使わないでください。");
-    if (
-      secondPlayer.preName.trim() === "" ||
-      secondPlayer.preName.trim().length > 10
-    )
-      secondPlayerNameError.push("プレイヤー名は1~10文字にしてください。");
-    if (!isValid(secondPlayer.preName))
-      secondPlayerNameError.push("特殊文字は使わないでください。");
+    const firstPlayerNameError: string[] = validatePlayerName(
+      firstPlayer.preName
+    );
+    const secondPlayerNameError: string[] = validatePlayerName(
+      secondPlayer.preName
+    );
+
     if (firstPlayerNameError.length > 0 || secondPlayerNameError.length > 0) {
       setNameError([firstPlayerNameError, secondPlayerNameError]);
       return false;
