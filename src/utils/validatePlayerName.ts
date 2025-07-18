@@ -1,4 +1,4 @@
-import isValid from "./isValid";
+import isValid from "../trash/isValid";
 
 const validatePlayerName = (name: string): string[] => {
     const error: string[] = [];

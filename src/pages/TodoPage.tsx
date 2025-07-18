@@ -1,11 +1,15 @@
 import style from "../App.module.css";
 import { Link } from "react-router-dom";
 import useTodo from "../hooks/useTodo";
+import useAuth from "../hooks/useAuth";
 import TodoForm from "../components/TodoForm";
 import TodoFilterButtons from "../components/TodoFilterButtons";
 import TodoList from "../components/TodoList";
 
 const TodoPage = () => {
+  const { userId, loading } = useAuth();
+
+  // userIdを渡してuseTodoを呼ぶ
   const {
     inputTodo,
     filteredTodos,
@@ -20,9 +24,12 @@ const TodoPage = () => {
     handleTodoDone,
     handleEditingTodo,
     handleConfirmEdit,
-  } = useTodo();
+  } = useTodo(userId);
 
-  //描画内容記述
+  if (loading) {
+    return <div>認証処理中...</div>;
+  }
+
   return (
     <div className={style.body}>
       <div className={style.container}>
@@ -31,6 +38,7 @@ const TodoPage = () => {
           inputTodo={inputTodo}
           setInputTodo={setInputTodo}
           handleTodoAdd={handleTodoAdd}
+          disabled={!userId}  // userIdがない場合は操作不可に
         />
         {todoError && (
           <div className={style.error}>
@@ -62,5 +70,4 @@ const TodoPage = () => {
   );
 };
 
-//モジュール化
 export default TodoPage;

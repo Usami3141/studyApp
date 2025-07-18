@@ -1,4 +1,4 @@
-import isValid from "../utils/isValid";
+import isValid from "./isValid";
 
 const validateTodoText = (text: string): string[] => {
     const error: string[] = []
