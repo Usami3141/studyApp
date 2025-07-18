@@ -6,12 +6,14 @@ type TodoFormProps = {
   inputTodo: string;
   setInputTodo: (value: string) => void;
   handleTodoAdd: () => void;
+  disabled?: boolean;
 };
 
 const TodoForm = ({
   inputTodo,
   setInputTodo,
   handleTodoAdd,
+  disabled,
 }: TodoFormProps) => {
   return (
     <div className={style.inputGroup}>
@@ -21,6 +23,7 @@ const TodoForm = ({
         type="text"
         value={inputTodo}
         onChange={(e) => setInputTodo(e.target.value)}
+        disabled={disabled} 
       />
       <Button onClick={handleTodoAdd}>登録</Button>
     </div>
